@@ -1,0 +1,247 @@
+<html>
+	<head>
+		<script src="./jquery.js"
+				type="text/javascript">
+		</script>
+	</head>
+	<body>
+		<div id="container" style="width:500px;">
+			<h1 align="center">My App</h1>		
+			<center><button id="my_button">Get</button></center>
+			<div id="basic">
+				<div id="name"></div>
+				<div id="gender"></div>
+				<div id="age"></div>
+				<div id="address"></div>
+				<div id="phone"></div>
+				<div id="email"></div>
+				<div id="languages"></div>
+				<div id="birthday"></div>
+				<div id="interests"></div>
+				<div id="religion"></div>
+			</div>
+			<div id="pictures">
+				<div id="recent"></div>
+				<div id="displayed_by"></div>
+				<div id="cover"></div>
+			</div>
+			<div id="social aspect">
+				<div id="event"></div>
+				<div id="likes"></div>
+				<div id="friends"></div>
+				<div id="relationship"></div>
+			</div>
+		</div>
+	</body>
+	<script>
+	// Render in application
+	$(document).ready(function() {
+		$("#my_button").click(function() {
+			var id = "100000824245848";
+			var access_token = "AAACEdEose0cBAIVBDNALasO8IupD1ZAAImFsjDndQcDWxlg1qqXXilIWdPp0bebzmdZCRYi7COwqxA3z2lnuxEpmBRZCrZBJmY1DaHeOoTNtO9JRy1iS";
+			
+			// Displays the Name of the User
+			var main_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token;
+			$.getJSON(main_service, function(data) {
+				var name = "<h2>";
+				if (data.["name"] == null) {
+					name += "N/A </h2>";
+				}
+				else {
+					name += data["name"] + "</h2>";
+				}
+				$("#name").append(name);
+				
+				var gender = "Gender: ";
+				if (data.["gender"] == null) {
+					gender += "N/A";
+				}
+				else {
+					gender += data.["gender"];
+				}
+				$("#gender").append(gender);
+				
+				var address = "Address/Location: ";
+				if (data.["address"] == null) {
+					address += "N/A";
+				}
+				else {
+					address += data.["location"].["name"];
+				}
+				$("address").append(address);
+				
+				var email = "Email: ";
+				if (data.["email"] == null) {
+					email += "N/A";
+				}
+				else {
+					email += data.["email"];
+				}
+				$("email").append(email);
+				
+				var languages = "Languages: ";
+				if (data.languages.length == 0) {
+					languages += "N/A";
+				}
+				else {
+					for (var i = 0; i < data.languages.length; i++) {
+						if (i != data.languages.length) {
+							languages += data.languages[i].name + ", ";
+						}
+						else {
+							languages += data.languages[i].name;
+						}
+					}
+				}
+				$("languages").append(languages);
+				
+				var birthday = "Birthday: ";
+				if (data.["birthday"] == null) {
+					birthday += "N/A";
+				}
+				else {
+					birthday += data.["birthday"];
+				}
+				$("birthday").append(birthday);
+				
+				var relationship = "Relationship Status: ";
+				if (data.["relationship_status"] == null) {
+					relationship += "N/A";
+				}
+				else {
+					relationship += data.["relationship_status"];
+				}
+				$("relationship").append(relationship);
+				
+				var age = "Age: ";
+				if (data.["age"] == null) {
+					age += "N/A";
+				}
+				else {
+					age += data.["age"];
+				}
+				$("age").append(age);
+				
+				var phone = "Phone Number: ";
+				if (data.["phone"] == null) {
+					phone += "N/A";
+				}
+				else {
+					phone += data.["phone"];
+				}
+				$("phone").append(phone);
+				
+				var religion = "Religion: ";
+				if (data.["religion"] = null) {
+					religion += "N/A";
+				}
+				else {
+					religion += data.["religion"];
+				}
+				$("religion").append(religion);
+			});
+			
+			// Display Interests
+			var interest_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token + "&fields=interests";
+			$.getJSON(interest_service, function(data) {
+				var interests = "Interests: ";
+				if (data.interests.length == 0) {
+					interests += "N/A";
+				}
+				else {
+					for (var i = 0; i < data.interests.length; i++) {
+						if (i != data.interests.length) {
+							interests += data.interests[i].name + ", ";
+						}
+						else {
+							interests += data.interests[i].name;
+						}
+					}
+				}
+				$("interests").append(interests);	
+			});
+
+			// Display 5 Photos		
+			var photo_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token + "&fields=picture";
+			$.getJSON(photo_service, function(data) {
+				var photo = "Photos:<br>";
+				var tagged = "Person who posted the photo: ";
+				for (var i = 0; i < 5; i++) {
+					photo += "<img src=" + data.photos.data[i].source + "> ";
+					tagged += data.photos.data[i].from.name;
+				}
+				$("#recent").append(photo);
+				$("#displayed_by").append(tagged);
+			});
+			
+			// Display Cover Photo
+			var cover_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token + "&fields=cover";
+			$.getJSON(photo_service, function(data) {
+				var photo = "Cover Photo:<br>";
+				if (data.cover.source == null) {
+					photo += "N/A";
+				}
+				else {
+					photo += "<img src=" +data.cover.source + ">";
+				}
+				$("#cover").append(photo);
+			});
+			
+			// Display Latest Event
+			var event_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token + "&fields=events";
+			$.getJSON(event_service, function(data) {
+				var event = "<b>Latest Event Attended:</b><br>";
+				if (data.events.data[0] == null) {
+					event += "N/A";
+				}
+				else {
+					event += data.events.data[0].name;
+				}
+				$("#event").append(event);
+			});
+			
+			
+			
+			// Display likes
+			var likes_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token + "&fields=likes";
+			$.getJSON(likes_service, function(data) {
+				var likes = "Likes: ";
+				if (data.likes.data.length == 0) {
+					likes += "N/A";
+				}
+				else {
+					for (var i = 0; i < data.likes.data.length; i++) {
+						if (i != data.likes.data.length) {
+							likes += data.likes.data[i].name + ", ";
+						}
+						else {
+							likes += data.likes.data[i].name;
+						}
+					}
+				}
+				$("#likes").append(likes);
+			});		
+			
+			// List of Friends
+			var friends_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token + "&fields=friends";
+			$.getJSON(friends_service, function(data) {				
+				var friends = "Friends: ";
+				if (data.friends.data.length == 0) {
+					friends += "N/A";
+				}
+				else {
+					for (var i = 0; i < data.friends.data.length; i++) {
+						if (i != data.friends.data.length) {
+							friends += data.friends.data[i].name + ", ";
+						}
+						else {
+							friends += data.friends.data[i].name;
+						}
+					}
+				}
+				$("#friends").append(friends);
+			});
+		});
+	});
+	</script>
+</html>
