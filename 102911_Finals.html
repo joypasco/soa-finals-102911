@@ -148,16 +148,16 @@
 			var interest_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token + "&fields=interests";
 			$.getJSON(interest_service, function(data) {
 				var interests = "Interests: ";
-				if (data.interests.length == 0) {
+				if (data.length == 0) {
 					interests += "N/A";
 				}
 				else {
-					for (var i = 0; i < data.interests.length; i++) {
-						if (i != data.interests.length) {
-							interests += data.interests[i].name + ", ";
+					for (var i = 0; i < data.length; i++) {
+						if (i != data.length) {
+							interests += data[i].name + ", ";
 						}
 						else {
-							interests += data.interests[i].name;
+							interests += data[i].name;
 						}
 					}
 				}
@@ -170,8 +170,8 @@
 				var photo = "Photos:<br>";
 				var tagged = "Person who posted the photo: ";
 				for (var i = 0; i < 5; i++) {
-					photo += "<img src=" + data.photos.data[i].source + "> ";
-					tagged += data.photos.data[i].from.name;
+					photo += "<img src=" + data.photos[i].data.source + "> ";
+					tagged += data.photos[i].data.from.name;
 				}
 				$("#recent").append(photo);
 				$("#displayed_by").append(tagged);
@@ -181,7 +181,7 @@
 			var cover_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token + "&fields=cover";
 			$.getJSON(photo_service, function(data) {
 				var photo = "Cover Photo:<br>";
-				if (data.cover.source == null) {
+				if (data.cover == null) {
 					photo += "N/A";
 				}
 				else {
