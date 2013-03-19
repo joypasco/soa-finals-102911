@@ -47,7 +47,7 @@
 			var basic_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token;
 			$.getJSON(basic_service, function(data) {
 				var name = "<h2>";
-				if (data.["name"] == null) {
+				if (data.["name"] = null) {
 					name += "N/A </h2>";
 				}
 				else {
@@ -56,7 +56,7 @@
 				$("#name").append(name);
 				
 				var gender = "Gender: ";
-				if (data.["gender"] == null) {
+				if (data.["gender"] = null) {
 					gender += "N/A";
 				}
 				else {
@@ -65,7 +65,7 @@
 				$("#gender").append(gender);
 				
 				var address = "Address/Location: ";
-				if (data.["address"] == null) {
+				if (data.["address"] = null) {
 					address += "N/A";
 				}
 				else {
@@ -74,7 +74,7 @@
 				$("address").append(address);
 				
 				var email = "Email: ";
-				if (data.["email"] == null) {
+				if (data.["email"] = null) {
 					email += "N/A";
 				}
 				else {
@@ -83,7 +83,7 @@
 				$("email").append(email);
 				
 				var languages = "Languages: ";
-				if (data.languages.length == 0) {
+				if (data.languages.length = 0) {
 					languages += "N/A";
 				}
 				else {
@@ -99,7 +99,7 @@
 				$("languages").append(languages);
 				
 				var birthday = "Birthday: ";
-				if (data.["birthday"] == null) {
+				if (data.["birthday"] = null) {
 					birthday += "N/A";
 				}
 				else {
@@ -108,7 +108,7 @@
 				$("birthday").append(birthday);
 				
 				var relationship = "Relationship Status: ";
-				if (data.["relationship_status"] == null) {
+				if (data.["relationship_status"] = null) {
 					relationship += "N/A";
 				}
 				else {
@@ -117,7 +117,7 @@
 				$("relationship").append(relationship);
 				
 				var age = "Age: ";
-				if (data.["age"] == null) {
+				if (data.["age"] = null) {
 					age += "N/A";
 				}
 				else {
@@ -126,7 +126,7 @@
 				$("age").append(age);
 				
 				var phone = "Phone Number: ";
-				if (data.["phone"] == null) {
+				if (data.["phone"] = null) {
 					phone += "N/A";
 				}
 				else {
@@ -148,7 +148,7 @@
 			var interest_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token + "&fields=interests";
 			$.getJSON(interest_service, function(data) {
 				var interests = "Interests: ";
-				if (data.interests.length == 0) {
+				if (data.interests.length = 0) {
 					interests += "N/A";
 				}
 				else {
@@ -181,7 +181,7 @@
 			var cover_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token + "&fields=cover";
 			$.getJSON(photo_service, function(data) {
 				var photo = "Cover Photo:<br>";
-				if (data.cover.source == null) {
+				if (data.cover.source = null) {
 					photo += "N/A";
 				}
 				else {
@@ -194,7 +194,7 @@
 			var event_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token + "&fields=events";
 			$.getJSON(event_service, function(data) {
 				var event = "<b>Latest Event Attended:</b><br>";
-				if (data.events.data[0] == null) {
+				if (data.events.data[0] = null) {
 					event += "N/A";
 				}
 				else {
@@ -209,7 +209,7 @@
 			var likes_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token + "&fields=likes";
 			$.getJSON(likes_service, function(data) {
 				var likes = "Likes: ";
-				if (data.likes.data.length == 0) {
+				if (data.likes.data.length = 0) {
 					likes += "N/A";
 				}
 				else {
@@ -229,7 +229,7 @@
 			var friends_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token + "&fields=friends";
 			$.getJSON(friends_service, function(data) {				
 				var friends = "Friends: ";
-				if (data.friends.data.length == 0) {
+				if (data.friends.data.length = 0) {
 					friends += "N/A";
 				}
 				else {
