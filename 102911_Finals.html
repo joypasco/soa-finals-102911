@@ -44,8 +44,8 @@
 			var access_token = "AAACEdEose0cBAI0XzilgrdcbqIVIv70UQZAuKA23clg8DHa6sU3WoAiyC4QJNQ6jIMDTZCyCZBvCEZAHgDmZBvEHEHWiCvgd9ooVEXstYSAt1YSuQKaDG";
 			
 			// Displays the Name of the User
-			var main_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token;
-			$.getJSON(main_service, function(data) {
+			var basic_service = "https://graph.facebook.com/" + id + "?access_token=" + access_token;
+			$.getJSON(basic_service, function(data) {
 				var name = "<h2>";
 				if (data.["name"] == null) {
 					name += "N/A </h2>";
